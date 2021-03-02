@@ -7,11 +7,11 @@ import com.jriveiro.publicapirest.model.api.Contributors
 
 @Dao
 interface ContributorDao {
-/*
+
     @Query("SELECT * FROM CONTRIBUTORS")
     fun getAll(): List<Contributors>
 
     @Insert
-    fun insert(contributors: List<Contributors>)*/
+    fun insert(contributors: List<Contributors>)
 
 }

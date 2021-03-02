@@ -1,10 +1,13 @@
 package com.jriveiro.publicapirest.model.api
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-
+@Entity
 data class Contributors(
-    @SerializedName("login") val login : String,
+    @PrimaryKey @ColumnInfo @SerializedName("login") val login : String,
     @SerializedName("id") val id : Int,
     @SerializedName("node_id") val node_id : String,
     @SerializedName("avatar_url") val avatar_url : String,
