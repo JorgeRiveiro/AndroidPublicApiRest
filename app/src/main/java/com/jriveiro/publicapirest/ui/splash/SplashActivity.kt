@@ -40,8 +40,14 @@ class SplashActivity : AppCompatActivity() {
 
     private fun startDB(){
           CoroutineScope(Dispatchers.IO).launch {
-              database.contributorDao().insert(listaContributors)
-              startActivity(ListContributorsActivity::class.java)
+              val listaDataContributors= database.contributorDao().getAllContributors()
+              if (listaDataContributors != listaContributors){
+                database.contributorDao().insert(listaContributors)
+                startActivity(ListContributorsActivity::class.java)
+              }else{
+                  startActivity(ListContributorsActivity::class.java)
+              }
+
           }
     }
 

@@ -9,7 +9,7 @@ import com.jriveiro.publicapirest.model.api.Contributors
 interface ContributorDao {
 
     @Query("SELECT * FROM CONTRIBUTORS")
-    fun getAll(): List<Contributors>
+    fun getAllContributors(): List<Contributors>
 
     @Insert
     fun insert(contributors: List<Contributors>)
