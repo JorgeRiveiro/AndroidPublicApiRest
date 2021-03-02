@@ -23,6 +23,7 @@ class ListContributorsActivity : AppCompatActivity() {
         database = ContributorsDB.getDatabase(this)
 
         startUI()
+
     }
 
     private fun startUI() {

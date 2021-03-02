@@ -1,6 +1,8 @@
 package com.jriveiro.publicapirest.ui.listcontributors
 
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +11,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jriveiro.publicapirest.R
 import com.jriveiro.publicapirest.model.api.Contributors
+import com.jriveiro.publicapirest.ui.contributorinfo.ContributorInfoActivity
 import com.squareup.picasso.Picasso
 
-class ListContributorsAdapter: RecyclerView.Adapter<ListContributorsAdapter.ContributorHolder>() {
+class ListContributorsAdapter: RecyclerView.Adapter<ListContributorsAdapter.ContributorHolder> () {
 
      var contributor : List<Contributors> = ArrayList()
     lateinit var context: Context
+
 
     fun ListContributorsAdapter(contributor: List<Contributors>, context: Context) {
         this.contributor = contributor
@@ -41,11 +45,16 @@ class ListContributorsAdapter: RecyclerView.Adapter<ListContributorsAdapter.Cont
             val txtLogin = view.findViewById(R.id.nameContributor) as TextView
             val imgProfile = view.findViewById(R.id.imageContributor) as ImageView
             txtLogin.text = contPerson.login
-           imgProfile.loadUrl(contPerson.avatar_url)
+            imgProfile.loadUrl(contPerson.avatar_url)
+            itemView.setOnClickListener {
+                val contributorDetail = Intent(itemView.context, ContributorInfoActivity::class.java)
+                contributorDetail.putExtra("login", contPerson.login)
+                itemView.context.startActivity(contributorDetail)
+            }
         }
         fun ImageView.loadUrl(url: String) {
             Picasso.with(context).load(url).into(this)
         }
     }
-
 }
+
